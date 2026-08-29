@@ -1,0 +1,10 @@
+# .github/metadata.yaml
+description: "Tagged angle values — radians, degrees, conversion, trigonometry, and angle arithmetic — for Swift."
+topics:
+  - primitives
+  - angle
+  - trigonometry
+  - geometry
+homepage: "https://swift-institute.org"
+readme:
+  family: E
