@@ -4,10 +4,10 @@ import Testing
 @testable import Angle
 
 @Suite
-struct `Tagged - Angle Arithmetic` {
+struct `Tagged angles preserve their units through arithmetic` {
 
     @Test
-    func `radian + radian`() {
+    func `Adding radians sums their measures`() {
         let r1 = Radian<Double>.pi.full
         let r2 = Radian<Double>.pi.half
         let result = r1 + r2
@@ -16,7 +16,7 @@ struct `Tagged - Angle Arithmetic` {
     }
 
     @Test
-    func `radian - radian`() {
+    func `Subtracting radians computes the difference between their measures`() {
         let r1 = Radian<Double>.pi.full
         let r2 = Radian<Double>.pi.half
         let result = r1 - r2
@@ -25,7 +25,7 @@ struct `Tagged - Angle Arithmetic` {
     }
 
     @Test
-    func `radian scaling by scalar`() {
+    func `Scaling radians multiplies their measure`() {
         let r = Radian<Double>.pi.full
         let result1 = r * 2.0
         let result2 = 2.0 * r
@@ -34,14 +34,14 @@ struct `Tagged - Angle Arithmetic` {
     }
 
     @Test
-    func `radian division by scalar`() {
+    func `Dividing radians scales their measure`() {
         let r = Radian<Double>.pi.full
         let result = r / 2.0
         #expect(result == Radian<Double>.pi.half)
     }
 
     @Test
-    func `degree + degree`() {
+    func `Adding degrees sums their measures`() {
         let d1: Degree<Double> = 90.0
         let d2: Degree<Double> = 45.0
         let result = d1 + d2
@@ -49,7 +49,7 @@ struct `Tagged - Angle Arithmetic` {
     }
 
     @Test
-    func `degree - degree`() {
+    func `Subtracting degrees computes the difference between their measures`() {
         let d1: Degree<Double> = 90.0
         let d2: Degree<Double> = 45.0
         let result = d1 - d2
@@ -58,10 +58,10 @@ struct `Tagged - Angle Arithmetic` {
 }
 
 @Suite
-struct `Tagged - Angle Zero` {
+struct `Tagged radians have an additive zero` {
 
     @Test
-    func `zero for radian`() {
+    func `Zero radians have a zero measure`() {
         let zero: Radian<Double> = .zero
         #expect(zero == 0.0)
     }
