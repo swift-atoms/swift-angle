@@ -6,4 +6,6 @@ The `pi`, `right`, `straight`, and `full` factories accept exact Rational coeffi
 
 `Numeric.Fraction<N, D, Result>` has been removed: it accepted any Result, even with a zero denominator, and did not enforce a fraction relationship. Use the existing arbitrary-precision Rational atom instead. For example, `try Radian<Double>.pi.fraction(Rational(numerator: 1, denominator: 3))` produces an approximate angle with an exact one-third coefficient.
 
-Trigonometry is still being separated from Numeric. It is a remaining dependency boundary, not part of the completed migration.
+Circular functions require only `Trigonometry.Circular`. Normalization and scalar multiples of pi use Swift floating-point operations and do not require an elementary-function backend. Concrete platform conformances are supplied by the higher Numeric compatibility composition. Angle has no dependency on Numeric or its C shim.
+
+Normalization returns a represented value in [0, 2*pi). If rounding reaches the full-turn endpoint, it selects zero; signed zero is canonicalized to positive zero. Nonfinite angles normalize to NaN. This is floating-point modular reduction, not exact symbolic angle reduction.

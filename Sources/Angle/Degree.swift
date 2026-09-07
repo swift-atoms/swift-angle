@@ -1,3 +1,4 @@
+public import Trigonometry
 public import Rational
 public import Scale
 public import Tagged
@@ -166,26 +167,9 @@ extension Tagged::Tagged where Tag == Angle.Degree, Underlying: BinaryFloatingPo
     }
 }
 
-extension Tagged::Tagged where Tag == Angle.Degree, Underlying == Double {
-
-    @inlinable
-    public var sin: Scale<1, Underlying> { radians.sin }
-
-    @inlinable
-    public var cos: Scale<1, Underlying> { radians.cos }
-
-    @inlinable
-    public var tan: Scale<1, Underlying> { radians.tan }
-}
-
-extension Tagged::Tagged where Tag == Angle.Degree, Underlying == Float {
-
-    @inlinable
-    public var sin: Scale<1, Underlying> { radians.sin }
-
-    @inlinable
-    public var cos: Scale<1, Underlying> { radians.cos }
-
-    @inlinable
-    public var tan: Scale<1, Underlying> { radians.tan }
+extension Tagged::Tagged
+where Tag == Angle.Degree, Underlying: BinaryFloatingPoint & Trigonometry.Circular {
+    @inlinable public var sin: Scale<1, Underlying> { radians.sin }
+    @inlinable public var cos: Scale<1, Underlying> { radians.cos }
+    @inlinable public var tan: Scale<1, Underlying> { radians.tan }
 }

@@ -1,23 +1,23 @@
-public import Numeric
+public import Trigonometry
 public import Scale
 public import Tagged
 
 extension Tagged::Tagged
-where Tag == Angle.Radian, Underlying: BinaryFloatingPoint & Numeric::Numeric.Transcendental {
+where Tag == Angle.Radian, Underlying: BinaryFloatingPoint & Trigonometry.Circular {
 
     @inlinable
     public static func sin(of angle: Self) -> Scale<1, Underlying> {
-        Scale(Underlying._sin(angle.underlying))
+        Scale(Underlying.sin(angle.underlying))
     }
 
     @inlinable
     public static func cos(of angle: Self) -> Scale<1, Underlying> {
-        Scale(Underlying._cos(angle.underlying))
+        Scale(Underlying.cos(angle.underlying))
     }
 
     @inlinable
     public static func tan(of angle: Self) -> Scale<1, Underlying> {
-        Scale(Underlying._tan(angle.underlying))
+        Scale(Underlying.tan(angle.underlying))
     }
 
     @inlinable
@@ -31,41 +31,17 @@ where Tag == Angle.Radian, Underlying: BinaryFloatingPoint & Numeric::Numeric.Tr
 
     @inlinable
     public static func asin(_ ratio: Scale<1, Underlying>) -> Self {
-        Self(_unchecked: Underlying._asin(ratio.value))
+        Self(_unchecked: Underlying.asin(ratio.value))
     }
 
     @inlinable
     public static func acos(_ ratio: Scale<1, Underlying>) -> Self {
-        Self(_unchecked: Underlying._acos(ratio.value))
+        Self(_unchecked: Underlying.acos(ratio.value))
     }
 
     @inlinable
     public static func atan(_ ratio: Scale<1, Underlying>) -> Self {
-        Self(_unchecked: Underlying._atan(ratio.value))
+        Self(_unchecked: Underlying.atan(ratio.value))
     }
 
-    @inlinable
-    public static func pi(over n: Underlying) -> Self {
-        Self(_unchecked: Underlying.pi / n)
-    }
-
-    @inlinable
-    public static func pi(times n: Underlying) -> Self {
-        Self(_unchecked: Underlying.pi * n)
-    }
-
-    @inlinable
-    public static func normalized(_ angle: Self) -> Self {
-        let twoPi = Underlying.pi * 2
-        var result = angle.underlying.truncatingRemainder(dividingBy: twoPi)
-        if result < 0 {
-            result += twoPi
-        }
-        return Self(_unchecked: result)
-    }
-
-    @inlinable
-    public var normalized: Self {
-        Self.normalized(self)
-    }
 }

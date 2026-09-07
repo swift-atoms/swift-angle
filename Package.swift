@@ -18,13 +18,10 @@ let package = Package(
         .library(name: "Angle Test Support", targets: ["Angle Test Support"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/swift-atoms/swift-trigonometry.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-rational.git", branch: "main"),
         .package(
             url: "https://github.com/swift-atoms/swift-tagged.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-atoms/swift-numeric.git",
             branch: "main"
         ),
         .package(
@@ -36,9 +33,9 @@ let package = Package(
         .target(
             name: "Angle",
             dependencies: [
+                .product(name: "Trigonometry", package: "swift-trigonometry"),
                 .product(name: "Rational", package: "swift-rational"),
                 .product(name: "Tagged", package: "swift-tagged"),
-                .product(name: "Numeric", package: "swift-numeric"),
                 .product(name: "Scale", package: "swift-scale"),
             ],
             path: "Sources/Angle"
@@ -63,7 +60,6 @@ let package = Package(
             dependencies: [
                 .target(name: "Angle"),
                 .product(name: "Tagged", package: "swift-tagged"),
-                .product(name: "Numeric", package: "swift-numeric"),
                 .product(name: "Scale", package: "swift-scale"),
                 .target(name: "Angle Test Support"),
                 .target(name: "Angle Foundation Integration"),
