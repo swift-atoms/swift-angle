@@ -1,4 +1,4 @@
-public import Numeric
+public import Rational
 public import Scale
 public import Tagged
 
@@ -46,15 +46,9 @@ extension Angle.Degree {
         @inlinable
         public var quarter: Degree<Scalar> { Degree(_unchecked: 22.5) }
 
-        public typealias Fraction<let Numerator: Int, let Denominator: Int> = Numeric::Numeric.Fraction<
-            Numerator, Denominator, Degree<Scalar>
-        >
-
-        @inlinable
-        public func fraction<let Numerator: Int, let Denominator: Int>() -> Fraction<
-            Numerator, Denominator
-        > {
-            .init(Degree(_unchecked: 90 * Scalar(Numerator) / Scalar(Denominator)))
+        /// Multiplies the exact degree measure before approximating in Scalar.
+        public func fraction(_ coefficient: Rational) -> Degree<Scalar> {
+            Degree(_unchecked: (Rational(90) * coefficient).approximation(as: Scalar.self))
         }
     }
 }
@@ -77,15 +71,9 @@ extension Angle.Degree {
         @inlinable
         public var quarter: Degree<Scalar> { Degree(_unchecked: 45) }
 
-        public typealias Fraction<let Numerator: Int, let Denominator: Int> = Numeric::Numeric.Fraction<
-            Numerator, Denominator, Degree<Scalar>
-        >
-
-        @inlinable
-        public func fraction<let Numerator: Int, let Denominator: Int>() -> Fraction<
-            Numerator, Denominator
-        > {
-            .init(Degree(_unchecked: 180 * Scalar(Numerator) / Scalar(Denominator)))
+        /// Multiplies the exact degree measure before approximating in Scalar.
+        public func fraction(_ coefficient: Rational) -> Degree<Scalar> {
+            Degree(_unchecked: (Rational(180) * coefficient).approximation(as: Scalar.self))
         }
     }
 }
@@ -111,15 +99,9 @@ extension Angle.Degree {
         @inlinable
         public var sixth: Degree<Scalar> { Degree(_unchecked: 60) }
 
-        public typealias Fraction<let Numerator: Int, let Denominator: Int> = Numeric::Numeric.Fraction<
-            Numerator, Denominator, Degree<Scalar>
-        >
-
-        @inlinable
-        public func fraction<let Numerator: Int, let Denominator: Int>() -> Fraction<
-            Numerator, Denominator
-        > {
-            .init(Degree(_unchecked: 360 * Scalar(Numerator) / Scalar(Denominator)))
+        /// Multiplies the exact degree measure before approximating in Scalar.
+        public func fraction(_ coefficient: Rational) -> Degree<Scalar> {
+            Degree(_unchecked: (Rational(360) * coefficient).approximation(as: Scalar.self))
         }
     }
 }

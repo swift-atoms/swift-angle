@@ -18,6 +18,7 @@ let package = Package(
         .library(name: "Angle Test Support", targets: ["Angle Test Support"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/swift-atoms/swift-rational.git", branch: "main"),
         .package(
             url: "https://github.com/swift-atoms/swift-tagged.git",
             branch: "main"
@@ -35,6 +36,7 @@ let package = Package(
         .target(
             name: "Angle",
             dependencies: [
+                .product(name: "Rational", package: "swift-rational"),
                 .product(name: "Tagged", package: "swift-tagged"),
                 .product(name: "Numeric", package: "swift-numeric"),
                 .product(name: "Scale", package: "swift-scale"),

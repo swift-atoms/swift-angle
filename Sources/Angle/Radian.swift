@@ -1,4 +1,4 @@
-public import Numeric
+public import Rational
 public import Tagged
 
 public typealias Radian<Scalar> = Angle.Radian.Value<Scalar>
@@ -36,15 +36,12 @@ extension Angle.Radian {
         @inlinable
         public var sixth: Radian<Scalar> { Radian(_unchecked: .pi / 6) }
 
-        public typealias Fraction<let Numerator: Int, let Denominator: Int> = Numeric::Numeric.Fraction<
-            Numerator, Denominator, Radian<Scalar>
-        >
-
-        @inlinable
-        public func fraction<let Numerator: Int, let Denominator: Int>() -> Fraction<
-            Numerator, Denominator
-        > {
-            .init(Radian(_unchecked: .pi * Scalar(Numerator) / Scalar(Denominator)))
+        /// Applies an exact rational coefficient to the scalar approximation of pi.
+        public func fraction(_ coefficient: Rational) -> Radian<Scalar> {
+            let value = coefficient.scaledApproximation(as: Scalar.self)
+            return Radian(_unchecked: Scalar(sign: .plus,
+                exponent: Scalar.Exponent(clamping: value.exponent),
+                significand: .pi * value.significand))
         }
     }
 }
