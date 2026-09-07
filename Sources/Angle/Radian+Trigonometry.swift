@@ -1,5 +1,4 @@
 public import Numeric
-public import Real
 public import Scale
 public import Tagged
 

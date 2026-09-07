@@ -1,5 +1,4 @@
 public import Numeric
-public import Real
 public import Tagged
 
 public typealias Radian<Scalar> = Angle.Radian.Value<Scalar>

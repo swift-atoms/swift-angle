@@ -12,10 +12,10 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-        .library(
-            name: "Angle",
-            targets: ["Angle"]
-        ),
+        .library(name: "Angle", targets: ["Angle"]),
+        .library(name: "Angle Standard Library Integration", targets: ["Angle Standard Library Integration"]),
+        .library(name: "Angle Foundation Library Integration", targets: ["Angle Foundation Library Integration"]),
+        .library(name: "Angle Test Support", targets: ["Angle Test Support"]),
     ],
     dependencies: [
         .package(
@@ -37,30 +37,52 @@ let package = Package(
             dependencies: [
                 .product(name: "Tagged", package: "swift-tagged"),
                 .product(name: "Numeric", package: "swift-numeric"),
-                .product(name: "Real", package: "swift-numeric"),
                 .product(name: "Scale", package: "swift-scale"),
-            ]
+            ],
+            path: "Sources/Angle"
+        ),
+        .target(
+            name: "Angle Standard Library Integration",
+            dependencies: [
+                .target(name: "Angle"),
+            ],
+            path: "Sources/Angle Standard Library Integration"
+        ),
+        .target(
+            name: "Angle Foundation Library Integration",
+            dependencies: [
+                .target(name: "Angle"),
+                .target(name: "Angle Standard Library Integration"),
+            ],
+            path: "Sources/Angle Foundation Library Integration"
+        ),
+        .target(
+            name: "Angle Test Support",
+            dependencies: [
+                .target(name: "Angle"),
+            ],
+            path: "Tests/Support"
         ),
         .testTarget(
             name: "Angle Tests",
             dependencies: [
                 .target(name: "Angle"),
                 .product(name: "Tagged", package: "swift-tagged"),
-                .product(
-                    name: "Tagged Standard Library Integration",
-                    package: "swift-tagged"
-                ),
+                .product(name: "Tagged Standard Library Integration", package: "swift-tagged"),
                 .product(name: "Numeric", package: "swift-numeric"),
-                .product(name: "Real", package: "swift-numeric"),
                 .product(name: "Scale", package: "swift-scale"),
-            ]
+                .target(name: "Angle Test Support"),
+                .target(name: "Angle Standard Library Integration"),
+                .target(name: "Angle Foundation Library Integration"),
+            ],
+            path: "Tests/Angle Tests"
         ),
     ],
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    let ecosystem: [SwiftSetting] = [
+for target in package.targets {
+    target.swiftSettings = [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
@@ -69,8 +91,4 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableExperimentalFeature("Lifetimes"),
         .enableUpcomingFeature("InferIsolatedConformances"),
     ]
-
-    let package: [SwiftSetting] = []
-
-    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }
