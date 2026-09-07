@@ -13,8 +13,8 @@ let package = Package(
     ],
     products: [
         .library(name: "Angle", targets: ["Angle"]),
-        .library(name: "Angle Standard Library Integration", targets: ["Angle Standard Library Integration"]),
-        .library(name: "Angle Foundation Library Integration", targets: ["Angle Foundation Library Integration"]),
+
+        .library(name: "Angle Foundation Integration", targets: ["Angle Foundation Integration"]),
         .library(name: "Angle Test Support", targets: ["Angle Test Support"]),
     ],
     dependencies: [
@@ -41,20 +41,13 @@ let package = Package(
             ],
             path: "Sources/Angle"
         ),
+        
         .target(
-            name: "Angle Standard Library Integration",
+            name: "Angle Foundation Integration",
             dependencies: [
                 .target(name: "Angle"),
             ],
-            path: "Sources/Angle Standard Library Integration"
-        ),
-        .target(
-            name: "Angle Foundation Library Integration",
-            dependencies: [
-                .target(name: "Angle"),
-                .target(name: "Angle Standard Library Integration"),
-            ],
-            path: "Sources/Angle Foundation Library Integration"
+            path: "Sources/Angle Foundation Integration"
         ),
         .target(
             name: "Angle Test Support",
@@ -68,12 +61,10 @@ let package = Package(
             dependencies: [
                 .target(name: "Angle"),
                 .product(name: "Tagged", package: "swift-tagged"),
-                .product(name: "Tagged Standard Library Integration", package: "swift-tagged"),
                 .product(name: "Numeric", package: "swift-numeric"),
                 .product(name: "Scale", package: "swift-scale"),
                 .target(name: "Angle Test Support"),
-                .target(name: "Angle Standard Library Integration"),
-                .target(name: "Angle Foundation Library Integration"),
+                .target(name: "Angle Foundation Integration"),
             ],
             path: "Tests/Angle Tests"
         ),
