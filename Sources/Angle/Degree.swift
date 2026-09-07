@@ -47,7 +47,7 @@ extension Angle.Degree {
         @inlinable
         public var quarter: Degree<Scalar> { Degree(_unchecked: 22.5) }
 
-        /// Multiplies the exact degree measure before approximating in Scalar.
+
         public func fraction(_ coefficient: Rational) -> Degree<Scalar> {
             Degree(_unchecked: (Rational(90) * coefficient).approximation(as: Scalar.self))
         }
@@ -72,7 +72,7 @@ extension Angle.Degree {
         @inlinable
         public var quarter: Degree<Scalar> { Degree(_unchecked: 45) }
 
-        /// Multiplies the exact degree measure before approximating in Scalar.
+
         public func fraction(_ coefficient: Rational) -> Degree<Scalar> {
             Degree(_unchecked: (Rational(180) * coefficient).approximation(as: Scalar.self))
         }
@@ -100,7 +100,7 @@ extension Angle.Degree {
         @inlinable
         public var sixth: Degree<Scalar> { Degree(_unchecked: 60) }
 
-        /// Multiplies the exact degree measure before approximating in Scalar.
+
         public func fraction(_ coefficient: Rational) -> Degree<Scalar> {
             Degree(_unchecked: (Rational(360) * coefficient).approximation(as: Scalar.self))
         }
