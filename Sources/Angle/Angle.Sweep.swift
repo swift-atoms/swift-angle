@@ -1,8 +1,7 @@
 public import Tagged
 
 extension Angle {
-    /// A finite directed angular interval, retaining complete turns.
-    /// This is not a normalized phase or a canonical geometric locus.
+
     public struct Sweep<Scalar: BinaryFloatingPoint> {
         public let start: Angle.Radian.Value<Scalar>
         public let amount: Angle.Radian.Value<Scalar>
@@ -22,8 +21,6 @@ extension Angle {
             .init(_unchecked: start.underlying + amount.underlying)
         }
 
-        /// Reverse from the represented endpoint. Floating-point addition can round;
-        /// this is not a promise of bitwise involution for arbitrary magnitudes.
         public func reversed() throws(Error) -> Self {
             try Self(start: end, amount: .init(_unchecked: -amount.underlying))
         }
