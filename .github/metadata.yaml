@@ -1,9 +1,8 @@
 # .github/metadata.yaml
-description: "Tagged angle values — radians, degrees, conversion, trigonometry, and angle arithmetic — for Swift."
+description: "Directional sign for Swift — the axis-free positive/negative orientation, with opposite and signedness."
 topics:
   - primitives
-  - angle
-  - trigonometry
+  - direction
   - geometry
 homepage: "https://swift-institute.org"
 readme:
