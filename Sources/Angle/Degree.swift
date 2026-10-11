@@ -34,23 +34,24 @@ extension Angle.Degree {
     public struct Right<Scalar: BinaryFloatingPoint>: Sendable {
         @usableFromInline
         internal init() {}
+    }
+}
 
-        @inlinable
-        public var full: Degree<Scalar> { Degree(_unchecked: 90) }
+extension Angle.Degree.Right {
+    @inlinable
+    public var full: Degree<Scalar> { Degree(_unchecked: 90) }
 
-        @inlinable
-        public var half: Degree<Scalar> { Degree(_unchecked: 45) }
+    @inlinable
+    public var half: Degree<Scalar> { Degree(_unchecked: 45) }
 
-        @inlinable
-        public var third: Degree<Scalar> { Degree(_unchecked: 30) }
+    @inlinable
+    public var third: Degree<Scalar> { Degree(_unchecked: 30) }
 
-        @inlinable
-        public var quarter: Degree<Scalar> { Degree(_unchecked: 22.5) }
+    @inlinable
+    public var quarter: Degree<Scalar> { Degree(_unchecked: 22.5) }
 
-
-        public func fraction(_ coefficient: Rational) -> Degree<Scalar> {
-            Degree(_unchecked: (Rational(90) * coefficient).approximation(as: Scalar.self))
-        }
+    public func fraction(_ coefficient: Rational) -> Degree<Scalar> {
+        Degree(_unchecked: (Rational(90) * coefficient).approximation(as: Scalar.self))
     }
 }
 
@@ -59,23 +60,24 @@ extension Angle.Degree {
     public struct Straight<Scalar: BinaryFloatingPoint>: Sendable {
         @usableFromInline
         internal init() {}
+    }
+}
 
-        @inlinable
-        public var full: Degree<Scalar> { Degree(_unchecked: 180) }
+extension Angle.Degree.Straight {
+    @inlinable
+    public var full: Degree<Scalar> { Degree(_unchecked: 180) }
 
-        @inlinable
-        public var half: Degree<Scalar> { Degree(_unchecked: 90) }
+    @inlinable
+    public var half: Degree<Scalar> { Degree(_unchecked: 90) }
 
-        @inlinable
-        public var third: Degree<Scalar> { Degree(_unchecked: 60) }
+    @inlinable
+    public var third: Degree<Scalar> { Degree(_unchecked: 60) }
 
-        @inlinable
-        public var quarter: Degree<Scalar> { Degree(_unchecked: 45) }
+    @inlinable
+    public var quarter: Degree<Scalar> { Degree(_unchecked: 45) }
 
-
-        public func fraction(_ coefficient: Rational) -> Degree<Scalar> {
-            Degree(_unchecked: (Rational(180) * coefficient).approximation(as: Scalar.self))
-        }
+    public func fraction(_ coefficient: Rational) -> Degree<Scalar> {
+        Degree(_unchecked: (Rational(180) * coefficient).approximation(as: Scalar.self))
     }
 }
 
@@ -84,26 +86,27 @@ extension Angle.Degree {
     public struct Full<Scalar: BinaryFloatingPoint>: Sendable {
         @usableFromInline
         internal init() {}
+    }
+}
 
-        @inlinable
-        public var full: Degree<Scalar> { Degree(_unchecked: 360) }
+extension Angle.Degree.Full {
+    @inlinable
+    public var full: Degree<Scalar> { Degree(_unchecked: 360) }
 
-        @inlinable
-        public var half: Degree<Scalar> { Degree(_unchecked: 180) }
+    @inlinable
+    public var half: Degree<Scalar> { Degree(_unchecked: 180) }
 
-        @inlinable
-        public var third: Degree<Scalar> { Degree(_unchecked: 120) }
+    @inlinable
+    public var third: Degree<Scalar> { Degree(_unchecked: 120) }
 
-        @inlinable
-        public var quarter: Degree<Scalar> { Degree(_unchecked: 90) }
+    @inlinable
+    public var quarter: Degree<Scalar> { Degree(_unchecked: 90) }
 
-        @inlinable
-        public var sixth: Degree<Scalar> { Degree(_unchecked: 60) }
+    @inlinable
+    public var sixth: Degree<Scalar> { Degree(_unchecked: 60) }
 
-
-        public func fraction(_ coefficient: Rational) -> Degree<Scalar> {
-            Degree(_unchecked: (Rational(360) * coefficient).approximation(as: Scalar.self))
-        }
+    public func fraction(_ coefficient: Rational) -> Degree<Scalar> {
+        Degree(_unchecked: (Rational(360) * coefficient).approximation(as: Scalar.self))
     }
 }
 
@@ -120,7 +123,7 @@ extension Tagged::Tagged where Tag == Angle.Degree, Underlying: AdditiveArithmet
     }
 }
 
-extension Tagged::Tagged where Tag == Angle.Degree, Underlying: Swift.Numeric {
+extension Tagged::Tagged where Tag == Angle.Degree, Underlying: Swift::Numeric {
 
     @_disfavoredOverload
     @inlinable

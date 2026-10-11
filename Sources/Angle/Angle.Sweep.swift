@@ -6,7 +6,7 @@ extension Angle {
         public let start: Angle.Radian.Value<Scalar>
         public let amount: Angle.Radian.Value<Scalar>
 
-        public enum Error: Swift.Error, Equatable, Sendable {
+        public enum Error: Swift::Error, Equatable, Sendable {
             case nonfinite
         }
 
@@ -16,14 +16,16 @@ extension Angle {
             self.start = .init(_unchecked: start.underlying == 0 ? 0 : start.underlying)
             self.amount = .init(_unchecked: amount.underlying == 0 ? 0 : amount.underlying)
         }
+    }
+}
 
-        public var end: Angle.Radian.Value<Scalar> {
-            .init(_unchecked: start.underlying + amount.underlying)
-        }
+extension Angle.Sweep {
+    public var end: Angle.Radian.Value<Scalar> {
+        .init(_unchecked: start.underlying + amount.underlying)
+    }
 
-        public func reversed() throws(Error) -> Self {
-            try Self(start: end, amount: .init(_unchecked: -amount.underlying))
-        }
+    public func reversed() throws(Error) -> Self {
+        try Self(start: end, amount: .init(_unchecked: -amount.underlying))
     }
 }
 

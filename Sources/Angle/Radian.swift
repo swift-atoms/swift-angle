@@ -59,7 +59,7 @@ extension Tagged::Tagged where Tag == Angle.Radian, Underlying: AdditiveArithmet
     }
 }
 
-extension Tagged::Tagged where Tag == Angle.Radian, Underlying: Swift.Numeric {
+extension Tagged::Tagged where Tag == Angle.Radian, Underlying: Swift::Numeric {
 
     @_disfavoredOverload
     @inlinable
