@@ -27,5 +27,5 @@ extension Angle.Phase {
 }
 
 #if !hasFeature(Embedded)
-extension Angle.Phase: Swift::Codable {}
+    extension Angle.Phase: Swift::Codable {}
 #endif

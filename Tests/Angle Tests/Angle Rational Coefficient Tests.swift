@@ -23,7 +23,10 @@ import Testing
         let coefficient = try Rational(numerator: 1, denominator: powerOfTwo(26))
         #expect(coefficient.approximation(as: Float16.self) == 0)
         #expect(Radian<Float16>.pi.fraction(coefficient).underlying == .leastNonzeroMagnitude)
-        #expect(Degree<Float16>.full.fraction(coefficient).underlying == 90 * Float16.leastNonzeroMagnitude)
+        #expect(
+            Degree<Float16>.full.fraction(coefficient).underlying == 90
+                * Float16.leastNonzeroMagnitude
+        )
     }
 }
 

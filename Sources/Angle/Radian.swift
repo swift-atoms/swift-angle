@@ -36,12 +36,15 @@ extension Angle.Radian {
         @inlinable
         public var sixth: Radian<Scalar> { Radian(_unchecked: .pi / 6) }
 
-
         public func fraction(_ coefficient: Rational) -> Radian<Scalar> {
             let value = coefficient.scaledApproximation(as: Scalar.self)
-            return Radian(_unchecked: Scalar(sign: .plus,
-                exponent: Scalar.Exponent(clamping: value.exponent),
-                significand: .pi * value.significand))
+            return Radian(
+                _unchecked: Scalar(
+                    sign: .plus,
+                    exponent: Scalar.Exponent(clamping: value.exponent),
+                    significand: .pi * value.significand
+                )
+            )
         }
     }
 }

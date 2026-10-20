@@ -1,10 +1,13 @@
 import Angle
-import Testing
 import Foundation
+import Testing
 
 @Suite struct `Directed angular sweep contracts` {
     @Test func `Signed sweeps preserve endpoints and direction`() throws {
-        let sweep = try Angle.Sweep<Double>(start: Radian(_unchecked: 5), amount: Radian(_unchecked: -2))
+        let sweep = try Angle.Sweep<Double>(
+            start: Radian(_unchecked: 5),
+            amount: Radian(_unchecked: -2)
+        )
         #expect(sweep.end.underlying == 3)
         let reverse = try sweep.reversed()
         #expect(reverse.start.underlying == 3)
@@ -32,18 +35,33 @@ import Foundation
 
     @Test func `Overflowing endpoints are rejected`() {
         #expect(throws: Angle.Sweep<Double>.Error.nonfinite) {
-            try Angle.Sweep<Double>(start: Radian(_unchecked: .greatestFiniteMagnitude),
-                                    amount: Radian(_unchecked: .greatestFiniteMagnitude))
+            try Angle.Sweep<Double>(
+                start: Radian(_unchecked: .greatestFiniteMagnitude),
+                amount: Radian(_unchecked: .greatestFiniteMagnitude)
+            )
         }
     }
 
     @Test func `Coding revalidates the directed interval`() throws {
-        let sweep = try Angle.Sweep<Double>(start: Radian(_unchecked: 1), amount: Radian(_unchecked: -3))
-        #expect(try JSONDecoder().decode(Angle.Sweep<Double>.self, from: JSONEncoder().encode(sweep)) == sweep)
+        let sweep = try Angle.Sweep<Double>(
+            start: Radian(_unchecked: 1),
+            amount: Radian(_unchecked: -3)
+        )
+        #expect(
+            try JSONDecoder().decode(Angle.Sweep<Double>.self, from: JSONEncoder().encode(sweep))
+                == sweep
+        )
         let decoder = JSONDecoder()
-        decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "inf", negativeInfinity: "-inf", nan: "nan")
+        decoder.nonConformingFloatDecodingStrategy = .convertFromString(
+            positiveInfinity: "inf",
+            negativeInfinity: "-inf",
+            nan: "nan"
+        )
         #expect(throws: DecodingError.self) {
-            try decoder.decode(Angle.Sweep<Double>.self, from: Data(#"{"start":0,"amount":"inf"}"#.utf8))
+            try decoder.decode(
+                Angle.Sweep<Double>.self,
+                from: Data(#"{"start":0,"amount":"inf"}"#.utf8)
+            )
         }
     }
 }

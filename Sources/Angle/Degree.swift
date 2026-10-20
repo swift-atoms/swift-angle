@@ -1,7 +1,7 @@
-public import Trigonometry
 public import Rational
 public import Scale
 public import Tagged
+public import Trigonometry
 
 public typealias Degree<Scalar> = Angle.Degree.Value<Scalar>
 
