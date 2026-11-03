@@ -1,0 +1,11 @@
+# swift-angle
+
+Use this package when a value is a plane angle and its unit must not be lost: measures tagged as radians or degrees, exact rational fractions of π or of a right, straight or full angle, normalization into one turn, quarter-turn phases, and directed angular sweeps. Start from `Angle.Radian.Value<Scalar>` (spelled `Radian<Scalar>`) and `Angle.Degree.Value<Scalar>` (spelled `Degree<Scalar>`); use `Angle.Phase` for angles that are multiples of 90° and `Angle.Sweep<Scalar>` for a signed span starting at an angle. Rotations as transforms belong in swift-rotation, and arcs of a curve in swift-arc, both of which build on this package.
+
+## Laws
+
+- `normalized` maps a radian measure into the half-open turn [0, 2π), where 2π is computed from the scalar's own `pi`. A result that rounds to 2π, and negative zero, both become +0. A non-finite measure normalizes to NaN. Normalization needs no trigonometry backend.
+- `Angle.Phase(degrees:)` reduces any integer degree count, of either sign, modulo 360 and returns nil unless the result is a multiple of 90. `degrees` returns the representative in [0, 360), so every phase round-trips.
+- A degree `fraction` multiplies the coefficient by the exact degree measure (90, 180 or 360) in rational arithmetic and rounds once. A radian `fraction` uses the destination scalar's approximation of π and applies the coefficient's exponent after multiplying by π, so a coefficient that would underflow on its own still yields the nearest nonzero angle.
+- An `Angle.Sweep<Scalar>` is directed and unnormalized: `amount` may be negative, `start` is kept as given, and a full turn is distinct from an empty sweep. Its start, amount and end must all be finite; this is checked again when decoding. Negative zero in start or amount is stored as +0. `reversed()` starts at the old end with the negated amount, so reversing twice returns the original sweep.
+- `sin`, `cos`, `tan` and their inverses need the scalar to conform to `Trigonometry.Circular`. This package supplies no conformance for any standard-library type; the conformances in the tests exist for the tests only. Degree trigonometry first converts to radians using the scalar's `pi`.
