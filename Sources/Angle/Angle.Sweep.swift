@@ -1,14 +1,9 @@
 public import Tagged
 
 extension Angle {
-
     public struct Sweep<Scalar: BinaryFloatingPoint> {
         public let start: Angle.Radian.Value<Scalar>
         public let amount: Angle.Radian.Value<Scalar>
-
-        public enum Error: Swift::Error, Equatable, Sendable {
-            case nonfinite
-        }
 
         public init(
             start: Angle.Radian.Value<Scalar>,
@@ -20,6 +15,12 @@ extension Angle {
             self.start = .init(_unchecked: start.underlying == 0 ? 0 : start.underlying)
             self.amount = .init(_unchecked: amount.underlying == 0 ? 0 : amount.underlying)
         }
+    }
+}
+
+extension Angle.Sweep {
+    public enum Error: Swift::Error, Equatable, Sendable {
+        case nonfinite
     }
 }
 
