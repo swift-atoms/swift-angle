@@ -4,6 +4,7 @@ public import Tagged
 public typealias Radian<Scalar> = Angle.Radian.Value<Scalar>
 
 extension Tagged::Tagged where Tag == Angle.Radian, Underlying: BinaryFloatingPoint {
+
     @inlinable
     public static var zero: Self { Self(_unchecked: .zero) }
 
@@ -12,44 +13,44 @@ extension Tagged::Tagged where Tag == Angle.Radian, Underlying: BinaryFloatingPo
 }
 
 extension Angle.Radian {
+
     public struct Pi<Scalar: BinaryFloatingPoint>: Sendable {
         @usableFromInline
         internal init() {}
-    }
-}
 
-extension Angle.Radian.Pi {
-    @inlinable
-    public var full: Radian<Scalar> { Radian(_unchecked: .pi) }
+        @inlinable
+        public var full: Radian<Scalar> { Radian(_unchecked: .pi) }
 
-    @inlinable
-    public var half: Radian<Scalar> { Radian(_unchecked: .pi / 2) }
+        @inlinable
+        public var half: Radian<Scalar> { Radian(_unchecked: .pi / 2) }
 
-    @inlinable
-    public var quarter: Radian<Scalar> { Radian(_unchecked: .pi / 4) }
+        @inlinable
+        public var quarter: Radian<Scalar> { Radian(_unchecked: .pi / 4) }
 
-    @inlinable
-    public var two: Radian<Scalar> { Radian(_unchecked: .pi * 2) }
+        @inlinable
+        public var two: Radian<Scalar> { Radian(_unchecked: .pi * 2) }
 
-    @inlinable
-    public var third: Radian<Scalar> { Radian(_unchecked: .pi / 3) }
+        @inlinable
+        public var third: Radian<Scalar> { Radian(_unchecked: .pi / 3) }
 
-    @inlinable
-    public var sixth: Radian<Scalar> { Radian(_unchecked: .pi / 6) }
+        @inlinable
+        public var sixth: Radian<Scalar> { Radian(_unchecked: .pi / 6) }
 
-    public func fraction(_ coefficient: Rational) -> Radian<Scalar> {
-        let value = coefficient.scaledApproximation(as: Scalar.self)
-        return Radian(
-            _unchecked: Scalar(
-                sign: .plus,
-                exponent: Scalar.Exponent(clamping: value.exponent),
-                significand: .pi * value.significand
+        public func fraction(_ coefficient: Rational) -> Radian<Scalar> {
+            let value = coefficient.scaledApproximation(as: Scalar.self)
+            return Radian(
+                _unchecked: Scalar(
+                    sign: .plus,
+                    exponent: Scalar.Exponent(clamping: value.exponent),
+                    significand: .pi * value.significand
+                )
             )
-        )
+        }
     }
 }
 
 extension Tagged::Tagged where Tag == Angle.Radian, Underlying: AdditiveArithmetic {
+
     @inlinable
     public static func + (lhs: Self, rhs: Self) -> Self {
         Self(_unchecked: lhs.underlying + rhs.underlying)
@@ -62,6 +63,7 @@ extension Tagged::Tagged where Tag == Angle.Radian, Underlying: AdditiveArithmet
 }
 
 extension Tagged::Tagged where Tag == Angle.Radian, Underlying: Swift::Numeric {
+
     @_disfavoredOverload
     @inlinable
     public static func * (lhs: Self, rhs: Underlying) -> Self {
@@ -76,6 +78,7 @@ extension Tagged::Tagged where Tag == Angle.Radian, Underlying: Swift::Numeric {
 }
 
 extension Tagged::Tagged where Tag == Angle.Radian, Underlying: FloatingPoint {
+
     @inlinable
     public static func / (lhs: Self, rhs: Underlying) -> Self {
         Self(_unchecked: lhs.underlying / rhs)
@@ -83,6 +86,7 @@ extension Tagged::Tagged where Tag == Angle.Radian, Underlying: FloatingPoint {
 }
 
 extension Tagged::Tagged where Tag == Angle.Radian, Underlying: SignedNumeric {
+
     @inlinable
     public static prefix func - (value: Self) -> Self {
         value.map { -$0 }
@@ -90,6 +94,7 @@ extension Tagged::Tagged where Tag == Angle.Radian, Underlying: SignedNumeric {
 }
 
 extension Tagged::Tagged where Tag == Angle.Radian, Underlying: BinaryFloatingPoint {
+
     @inlinable
     public init(degrees: Degree<Underlying>) {
         self.init(_unchecked: degrees.underlying * .pi / 180)
@@ -97,6 +102,7 @@ extension Tagged::Tagged where Tag == Angle.Radian, Underlying: BinaryFloatingPo
 }
 
 extension Tagged::Tagged where Tag == Angle.Radian, Underlying: BinaryFloatingPoint {
+
     @inlinable
     public var degrees: Degree<Underlying> {
         Degree(radians: self)
