@@ -1,7 +1,7 @@
-public import Rational
-public import Scale
-public import Tagged
-public import Trigonometry
+import Rational
+import Scale
+import Tagged
+import Trigonometry
 
 
 extension Angle.Degree {
