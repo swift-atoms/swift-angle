@@ -56,6 +56,11 @@ extension Angle.Degree.Right {
 }
 
 extension Angle.Degree {
+
+    public struct Straight<Scalar: BinaryFloatingPoint>: Sendable {
+        @usableFromInline
+        internal init() {}
+    }
 }
 
 extension Angle.Degree.Straight {
@@ -77,6 +82,11 @@ extension Angle.Degree.Straight {
 }
 
 extension Angle.Degree {
+
+    public struct Full<Scalar: BinaryFloatingPoint>: Sendable {
+        @usableFromInline
+        internal init() {}
+    }
 }
 
 extension Angle.Degree.Full {
