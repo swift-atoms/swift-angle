@@ -1,3 +1,4 @@
+@_exported public import Quantity
 @_exported public import Rational
 @_exported public import Scale
 @_exported public import Tagged

@@ -4,6 +4,8 @@ Use this package when a value is a plane angle and its unit must not be lost: me
 
 ## Laws
 
+- A radian angle is a quantity of swift-quantity: `Angle.Radian` is a `Quantity.Kind` of dimension one (a ratio of two lengths), so radian values add, scale, divide and compare through swift-quantity, which this package re-exports. Degrees stay a measure in their own unit, as the standards that state angles in degrees use them.
+
 - `normalized` maps a radian measure into the half-open turn [0, 2π), where 2π is computed from the scalar's own `pi`. A result that rounds to 2π, and negative zero, both become +0. A non-finite measure normalizes to NaN. Normalization needs no trigonometry backend.
 - `Angle.Phase(degrees:)` reduces any integer degree count, of either sign, modulo 360 and returns nil unless the result is a multiple of 90. `degrees` returns the representative in [0, 360), so every phase round-trips.
 - A degree `fraction` multiplies the coefficient by the exact degree measure (90, 180 or 360) in rational arithmetic and rounds once. A radian `fraction` uses the destination scalar's approximation of π and applies the coefficient's exponent after multiplying by π, so a coefficient that would underflow on its own still yields the nearest nonzero angle.

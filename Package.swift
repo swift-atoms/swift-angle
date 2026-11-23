@@ -28,6 +28,7 @@ let package = Package(
             url: "https://github.com/swift-atoms/swift-scale.git",
             branch: "main"
         ),
+        .package(url: "https://github.com/swift-atoms/swift-quantity.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -37,6 +38,7 @@ let package = Package(
                 .product(name: "Rational", package: "swift-rational"),
                 .product(name: "Tagged", package: "swift-tagged"),
                 .product(name: "Scale", package: "swift-scale"),
+                .product(name: "Quantity", package: "swift-quantity"),
             ],
             path: "Sources/Angle"
         ),

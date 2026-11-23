@@ -6,9 +6,6 @@ public typealias Radian<Scalar> = Angle.Radian.Value<Scalar>
 extension Tagged::Tagged where Tag == Angle.Radian, Underlying: BinaryFloatingPoint {
 
     @inlinable
-    public static var zero: Self { Self(_unchecked: .zero) }
-
-    @inlinable
     public static var pi: Angle.Radian.Pi<Underlying> { .init() }
 }
 
@@ -46,50 +43,6 @@ extension Angle.Radian {
                 )
             )
         }
-    }
-}
-
-extension Tagged::Tagged where Tag == Angle.Radian, Underlying: AdditiveArithmetic {
-
-    @inlinable
-    public static func + (lhs: Self, rhs: Self) -> Self {
-        Self(_unchecked: lhs.underlying + rhs.underlying)
-    }
-
-    @inlinable
-    public static func - (lhs: Self, rhs: Self) -> Self {
-        Self(_unchecked: lhs.underlying - rhs.underlying)
-    }
-}
-
-extension Tagged::Tagged where Tag == Angle.Radian, Underlying: Swift::Numeric {
-
-    @_disfavoredOverload
-    @inlinable
-    public static func * (lhs: Self, rhs: Underlying) -> Self {
-        Self(_unchecked: lhs.underlying * rhs)
-    }
-
-    @_disfavoredOverload
-    @inlinable
-    public static func * (lhs: Underlying, rhs: Self) -> Self {
-        Self(_unchecked: lhs * rhs.underlying)
-    }
-}
-
-extension Tagged::Tagged where Tag == Angle.Radian, Underlying: FloatingPoint {
-
-    @inlinable
-    public static func / (lhs: Self, rhs: Underlying) -> Self {
-        Self(_unchecked: lhs.underlying / rhs)
-    }
-}
-
-extension Tagged::Tagged where Tag == Angle.Radian, Underlying: SignedNumeric {
-
-    @inlinable
-    public static prefix func - (value: Self) -> Self {
-        value.map { -$0 }
     }
 }
 

@@ -51,22 +51,6 @@ public func / <Scalar: FloatingPoint>(
 
 @inlinable
 public func + <Scalar: AdditiveArithmetic>(
-    lhs: Angle.Radian.Value<Scalar>,
-    rhs: Angle.Radian.Value<Scalar>
-) -> Angle.Radian.Value<Scalar> {
-    Tagged::Tagged(_unchecked: lhs.underlying + rhs.underlying)
-}
-
-@inlinable
-public func - <Scalar: AdditiveArithmetic>(
-    lhs: Angle.Radian.Value<Scalar>,
-    rhs: Angle.Radian.Value<Scalar>
-) -> Angle.Radian.Value<Scalar> {
-    Tagged::Tagged(_unchecked: lhs.underlying - rhs.underlying)
-}
-
-@inlinable
-public func + <Scalar: AdditiveArithmetic>(
     lhs: Angle.Degree.Value<Scalar>,
     rhs: Angle.Degree.Value<Scalar>
 ) -> Angle.Degree.Value<Scalar> {
